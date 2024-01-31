@@ -50,6 +50,27 @@ class FormController extends Controller
         dd($request->all());
     }
 
+    public function storeAPI(Request $request)
+    {
+        $data = $request->all();
+
+        $validation = Validator::make(
+            $data,
+            [
+                'course' => ['required', 'max:100'],
+                'workload' => ['required', 'integer'],
+            ]
+        );
+
+        if ($validation->fails()) {
+            $errors = $validation->errors();
+
+            return $errors->all();
+        }
+
+        dd($data);
+    }
+
     /**
      * Display the specified resource.
      */
