@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Http\Requests\FormsRequest;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Validator;
 
@@ -26,12 +27,12 @@ class FormController extends Controller
     /**
      * Store a newly created resource in storage.
      */
-    public function store(Request $request)
+    public function store(FormsRequest $request)
     {
-        $request->validate([
-            'course' => ['required', 'max:100'],
-            'workload' => ['required', 'integer'],
-        ]);
+        // $request->validate([
+        //     'course' => ['required', 'max:100'],
+        //     'workload' => ['required', 'integer'],
+        // ]);
         // $data = $request->except('_token');
 
         // /*$validation =*/ Validator::make(
@@ -46,7 +47,7 @@ class FormController extends Controller
         //     return redirect()->back()->withInput()->withErrors($validation->errors());
         // }
 
-        dd('The validation passed');
+        dd($request->all());
     }
 
     /**
