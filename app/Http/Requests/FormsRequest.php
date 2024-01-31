@@ -22,7 +22,11 @@ class FormsRequest extends FormRequest
     public function rules(): array
     {
         return [
-            'course' => ['required', 'max:100'],
+            'course' => ['required', 'max:100', function ($attribute, $value, $fail) {
+                if ($value == 'PHP') {
+                    $fail('O campo' . $attribute . ' não pode ser ' . $value);
+                }
+            }],
             'workload' => ['required', 'integer'],
         ];
     }
