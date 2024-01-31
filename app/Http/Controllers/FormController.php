@@ -28,18 +28,23 @@ class FormController extends Controller
      */
     public function store(Request $request)
     {
-        $data = $request->except('_token');
-        $validation = Validator::make(
-            $data,
-            [
-                'course' => ['required', 'max:100'],
-                'workload' => ['required', 'integer'],
-            ]
-        );
+        $request->validate([
+            'course' => ['required', 'max:100'],
+            'workload' => ['required', 'integer'],
+        ]);
+        // $data = $request->except('_token');
 
-        if ($validation->fails()) {
-            return redirect()->back()->withInput()->withErrors($validation->errors());
-        }
+        // /*$validation =*/ Validator::make(
+        //     $data,
+        //     [
+        //         'course' => ['required', 'max:100'],
+        //         'workload' => ['required', 'integer'],
+        //     ]
+        // )->validate();
+
+        // if ($validation->fails()) {
+        //     return redirect()->back()->withInput()->withErrors($validation->errors());
+        // }
 
         dd('The validation passed');
     }
